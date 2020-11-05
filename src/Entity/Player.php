@@ -1,14 +1,15 @@
 <?php
+require "Ranking.php";
 
 class Player
 {
     public const DEFAULT_POINTS = 1200;
-    private float $points;
+    private Ranking $ranking;
     private string $name;
 
     public function __construct(string $name)
     {
-        $this->points = self::DEFAULT_POINTS;
+        $this->ranking = new Ranking();
         $this->name = $name;
     }
 
@@ -19,11 +20,11 @@ class Player
 
     public function getPoints(): float
     {
-        return $this->points;
+        return $this->ranking->getPoints();
     }
 
     public function setPoints(float $points): void
     {
-        $this->points = $points;
+        $this->ranking->setPoints($points);
     }
 }
