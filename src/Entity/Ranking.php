@@ -20,4 +20,8 @@ class Ranking
     {
         $this->points = $points;
     }
+
+    public function addPoints(float $points): void {
+        $this->setPoints($this->getPoints() + $points);
+    }
 }

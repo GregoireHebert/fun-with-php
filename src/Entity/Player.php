@@ -27,4 +27,8 @@ class Player
     {
         $this->ranking->setPoints($points);
     }
+
+    public function addPoints(float $points): void {
+        $this->ranking->addPoints($points);
+    }
 }
