@@ -39,6 +39,13 @@ class Duel
      */
     private $date;
 
+    public function __construct($player1, $player2)
+    {
+        $this->player1 = $player1;
+        $this->player2 = $player2;
+        $this->date = new \DateTime('now');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,9 +104,10 @@ class Duel
         $r2 = $this->player2->getElo();
 
         $scores = array_map('intval', explode('-', $this->result));
-        $p1 = 1/(1+pow(10, ($r1 - $r2) / 400));
-        $p2 = 1/(1+pow(10, ($r2 - $r1) / 400));
+        $p1 = 1/(1+pow(10, ($r2 - $r1) / 400));
+        $p2 = 1/(1+pow(10, ($r1 - $r2) / 400));
 
-        $this->player1->setElo($r1 + 32 * ($scores[0]))
+        $this->player1->setElo($r1 + 32 * ($scores[0] - $p1));
+        $this->player2->setElo($r2 + 32 * ($scores[1] - $p2));
     }
 }

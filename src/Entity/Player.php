@@ -44,8 +44,10 @@ class Player
      */
     private $duels2;
 
-    public function __construct()
+    public function __construct($name, $elo = 1500)
     {
+        $this->name = $name;
+        $this->elo = $elo;
         $this->duels1 = new ArrayCollection();
         $this->duels2 = new ArrayCollection();
     }
