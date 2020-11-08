@@ -1,9 +1,6 @@
 <?php
-
-
 require "Entity/Match.php";
 
-echo 'hello world'."\n";
 
 $playerC = new Player("Debutant");
 $playerA = new Player("Averti");
