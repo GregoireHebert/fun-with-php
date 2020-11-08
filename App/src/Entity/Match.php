@@ -21,11 +21,12 @@ class Match {
 	}
 
 	public function getProbabilityOp1() {
-		return 1/(1 + pow(10, ($this->player2->getRatio() - $this->player1->getRatio()) / 400));
+		return $this->computeProbability($this->player2, $this->player1);
 	}
 
 	public function getProbabilityOp2() {
-		return 1/(1 + pow(10, ($this->player1->getRatio() - $this->player2->getRatio()) / 400));
+		return $this->computeProbability($this->player1, $this->player2);
+
 	}
 	
 	public function finishMatch(int $winner) {
@@ -38,6 +39,16 @@ class Match {
 		}
 	}
 
+
+	// A externaliser
+
+	private function computeProbability(Player $player1, Player $player2) {
+
+		return bcdiv(1, bcadd(1, pow(10, 
+			bcdiv(bcsub($player1->getRatio(), $player2->getRatio()), 400, 10)
+		), 10), 10);
+		
+	}
 
 }
 
