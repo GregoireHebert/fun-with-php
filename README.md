@@ -1,6 +1,11 @@
 Fun with PHP	
 ========
 
+## Utilisation
+
+Depuis la racine du projet, lancer:
+`php public/index.php`
+
 ## Contexte
 
 Vous venez d'être contacté par Blizzard.  
