@@ -1,6 +1,14 @@
 Fun with PHP	
 ========
 
+## Auteur
+
+[Mael Avennec](https://github.com/mvkopp "Mael Avennec")
+
+## Usage
+
+TODO
+
 ## Contexte
 
 Vous venez d'être contacté par Blizzard.  
