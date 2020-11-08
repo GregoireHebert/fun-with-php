@@ -5,7 +5,7 @@ class Probability
 {
     public static function getProbability(Player $playerA, Player $playerB): float
     {
-        $probability = fn(float $x, float $y) => 1 / (1 + (pow(10, (($y - $x) / 400))));
-        return $probability($playerA->getPoints(), $playerB->getPoints());
+        $exponent = bcdiv(bcsub($playerB->getPoints(),$playerA->getPoints()), 400, 15);
+        return bcdiv(1, bcadd(1, pow(10, $exponent), 10), 15);
     }
 }
