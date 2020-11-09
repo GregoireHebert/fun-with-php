@@ -1,6 +1,7 @@
 <?php
 
 include("src/Player.php");
+include("src/Game.php");
 
 $playerA=new Player("A");
 $playerA->setPoints(1700);
@@ -33,3 +34,12 @@ echo "probabilité du joueur A face au joueur D: ".$playerA->probability($player
 echo "<br>";
 echo PHP_EOL; 
 
+$game = new Game($playerA,$playerB);
+$game->doGame(1);
+
+echo "<br>";
+echo PHP_EOL; 
+echo "Le nouveau niveau du joueur ".$playerA->getName()." est: ".$playerA->getPoints();
+echo "<br>";
+echo PHP_EOL; 
+echo "Le nouveau niveau du joueur ".$playerB->getName()." est: ".$playerB->getPoints();
