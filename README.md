@@ -7,7 +7,10 @@ Fun with PHP
 
 ## Usage
 
-TODO
+Run this command in shell
+```
+$ php index.php
+```
 
 ## Contexte
 
