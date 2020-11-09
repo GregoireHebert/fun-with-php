@@ -11,10 +11,10 @@ $levelMan = new LevelManager();
 
 echo "\n************************ Les joueurs : *********************\n\n";
 
-echo $pA->toString();
-echo $pB->toString();
-echo $pC->toString();
-echo $pD->toString();
+echo $pA;
+echo $pB;
+echo $pC;
+echo $pD;
 
 echo "\n************************ Les probabilitès : *********************\n\n";
 
@@ -34,8 +34,8 @@ echo "\n************************ Niveau après match A vs B (A gagnant) : ******
 $gameAB->fixPlayersLevel(1);
 
 
-echo $pA->toString();
-echo $pB->toString();
+echo $pA;
+echo $pB;
 
 
 echo "\n\n";
