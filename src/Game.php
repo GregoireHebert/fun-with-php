@@ -11,7 +11,7 @@ class Game{
         $this->player2=$player2;
     }
 
-    public function doGame($winner):String{
+    public function doGame($winner):void{
         
         if($winner==0){ // match nul
             $this->result1=0.5;
@@ -33,15 +33,13 @@ class Game{
         }
         else{
             echo "Erreur dans le résultat du match";
-            return "";
+            return;
         }
 
         $newLevelPlayer1=$this->newLevel($this->player1->getPoints(), $this->result1, $this->player1->probability($this->player2->getPoints()));
         $this->player1->setPoints($newLevelPlayer1);
         $newLevelPlayer2=$this->newLevel($this->player2->getPoints(), $this->$result2, $this->player2->probability($this->player1->getPoints()));
         $this->player2->setPoints($newLevelPlayer2);
-
-        return "";
     }
 
     private function newLevel($level,$result,$probability):float{
