@@ -4,8 +4,6 @@ use App\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Joueur;
-use App\Entity\Match;
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
@@ -30,30 +28,3 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
-
-$joueurA = new Joueur("joueurA");
-$joueurA.setElo(1700);
-$joueurB = new Joueur("joueurB");
-$joueurB.setElo(2500);
-$joueurC = new Joueur("joueurC");
-$joueurD = new Joueur("joueurD");
-$joueurD.setElo(1800);
-
-echo $joueurA;
-echo $joueurB;
-echo $joueurC;
-echo $joueurD;
-
-$jA_vsjB = new Match($joueurA, $joueurB);
-$jB_vsjA = new Match($joueurB, $joueurA);
-
-$jC_vsjA = new Match($joueurC, $joueurA);
-$jA_vsjC = new Match($joueurA, $joueurC);
-
-$jD_vsjA = new Match($joueurD, $joueurA);
-$jA_vsjD = new Match($joueurA, $joueurD);
-
-echo $joueurA;
-echo $joueurB;
-echo $joueurC;
-echo $joueurD;

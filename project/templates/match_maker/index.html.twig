@@ -17,4 +17,13 @@
         <li>Your template at <code><a href="{{ '/home/sunoyr/Documents/MASTER/PHP/project/templates/match_maker/index.html.twig'|file_link(0) }}">templates/match_maker/index.html.twig</a></code></li>
     </ul>
 </div>
+
+<div>
+    <h1>Liste de joueurs</h1>
+    <ul>
+        {% for joueur in $joueurs %}
+            <li>{{ joueur }}</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

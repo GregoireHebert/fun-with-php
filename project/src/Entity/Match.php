@@ -27,6 +27,10 @@ class Match
         return $this->id;
     }
 
+    public static function calculProba($jA, $jB): float {
+        return 1/(1+pow(10,($jA->elo-$jB->elo)/400));
+    }
+
     public function __construct($jA, $jB) {
         $result = calculProba($jA, $jB);
         if ($result > 0.5) {
@@ -46,9 +50,5 @@ class Match
             $jB.setElo($jB->elo += 32*($Draw-$result));
         }
         echo $result.PHP_EOL;
-    }
-
-    public function calculProba($jA, $jB) {
-        return 1/(1+pow(10,($jA->elo-$jB->elo)/400));
     }
 }
