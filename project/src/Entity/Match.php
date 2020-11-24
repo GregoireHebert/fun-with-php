@@ -18,9 +18,9 @@ class Match
      */
     private $id;
 
-    private const Win = 1;
-    private const Lose = 0;
-    private const Draw = 0.5;
+    public const Win = 1;
+    public const Lose = 0;
+    public const Draw = 0.5;
 
     public function getId(): ?int
     {
@@ -28,26 +28,39 @@ class Match
     }
 
     public static function calculProba($jA, $jB): float {
-        return 1/(1+pow(10,($jA->elo-$jB->elo)/400));
+        return 1/(1+pow(10,($jA->getElo()-$jB->getElo())/400));
     }
 
     public function __construct($jA, $jB) {
-        $result = calculProba($jA, $jB);
+        $result = $this->calculProba($jA, $jB);
         if ($result > 0.5) {
-            echo "Victoire de ".$jA->name.PHP_EOL;
+            echo "Victoire de ".$jA->getName().PHP_EOL;
             //correction du elo
-            $jA.setElo($jA->elo += 32*($Win-$result));
-            $jB.setElo($jB->elo += 32*($Lose-(1-$result)));//on inverse la proba avec 1-$result
+            $new_elo_A = $jA->getElo();
+            $new_elo_A += 32*(self::Win-$result); 
+            $jA->setElo($new_elo_A);
+            $new_elo_B = $jB->getElo();
+            $new_elo_B += 32*(self::Lose-(1-$result));
+            $jB->setElo($new_elo_B);//on inverse la proba avec 1-$result
         } elseif ($result < 0.5) {
-            echo "Victoire de ".$jB->name.PHP_EOL;
+            echo "Victoire de ".$jB->getName().PHP_EOL;
             //correction du elo
-            $jB.setElo($jB->elo += 32*($Win-$result));
-            $jA.setElo($jA->elo += 32*($Lose-(1-$result)));//on inverse la proba avec 1-$result
+            $new_elo_B = $jB->getElo();
+            $new_elo_B += 32*(self::Win-$result); 
+            $jB->setElo($new_elo_B);
+            $new_elo_A = $jA->getElo();
+            $new_elo_A += 32*(self::Lose-(1-$result));
+            $jA->setElo($new_elo_A);//on inverse la proba avec 1-$result
         } else {
-            echo "Egalité de ".$jA->name." et de ".$jB->name.PHP_EOL;
+            echo "Egalité de ".$jA->getName()." et de ".$jB->getName().PHP_EOL;
             //correction du elo
-            $jA.setElo($jA->elo += 32*($Draw-$result));
-            $jB.setElo($jB->elo += 32*($Draw-$result));
+            $new_elo_A = $jA->getElo();
+            $new_elo_A += 32*(self::Draw-$result);
+            $jA->setElo($new_elo_A);
+
+            $new_elo_B = $jB->getElo();
+            $new_elo_B += 32*(self::Draw-$result);
+            $jB->setElo($new_elo_B);
         }
         echo $result.PHP_EOL;
     }
