@@ -18,6 +18,9 @@ class Match
      */
     private $id;
 
+    private $joueurA;
+    private $joueurB;
+
     public const Win = 1;
     public const Lose = 0;
     public const Draw = 0.5;
@@ -27,41 +30,54 @@ class Match
         return $this->id;
     }
 
-    public static function calculProba($jA, $jB): float {
-        return 1/(1+pow(10,($jA->getElo()-$jB->getElo())/400));
+    public function __construct($jA, $jB) {
+        $this->joueurA = $jA;
+        $this->joueurB = $jB;
     }
 
-    public function __construct($jA, $jB) {
-        $result = $this->calculProba($jA, $jB);
-        if ($result > 0.5) {
-            echo "Victoire de ".$jA->getName().PHP_EOL;
-            //correction du elo
-            $new_elo_A = $jA->getElo();
-            $new_elo_A += 32*(self::Win-$result); 
-            $jA->setElo($new_elo_A);
-            $new_elo_B = $jB->getElo();
-            $new_elo_B += 32*(self::Lose-(1-$result));
-            $jB->setElo($new_elo_B);//on inverse la proba avec 1-$result
-        } elseif ($result < 0.5) {
-            echo "Victoire de ".$jB->getName().PHP_EOL;
-            //correction du elo
-            $new_elo_B = $jB->getElo();
-            $new_elo_B += 32*(self::Win-$result); 
-            $jB->setElo($new_elo_B);
-            $new_elo_A = $jA->getElo();
-            $new_elo_A += 32*(self::Lose-(1-$result));
-            $jA->setElo($new_elo_A);//on inverse la proba avec 1-$result
-        } else {
-            echo "Egalité de ".$jA->getName()." et de ".$jB->getName().PHP_EOL;
-            //correction du elo
-            $new_elo_A = $jA->getElo();
-            $new_elo_A += 32*(self::Draw-$result);
-            $jA->setElo($new_elo_A);
+    public function playMatch(): string{
+        $result = 1/(1+pow(10,($this->joueurA->getElo()-$this->joueurB->getElo())/400));
 
-            $new_elo_B = $jB->getElo();
+        if ($result > 0.5) {
+            //correction du elo
+            $new_elo_A = $this->joueurA->getElo();
+            $new_elo_A += 32*(self::Win-$result);
+            $this->joueurA->setElo($new_elo_A);
+
+            $new_elo_B = $this->joueurB->getElo();
+            $new_elo_B += 32*(self::Lose-(1-$result));
+            $this->joueurB->setElo($new_elo_B);//on inverse la proba avec 1-$result
+            
+            return sprintf('Victoire de %s nouveau elo : %d points, défaite de  %s nouveau elo %d points', $this->joueurA->getName(), $this->joueurA->getElo(), 
+            $this->joueurB->getName(), $this->joueurB->getElo()).PHP_EOL;
+        } elseif ($result < 0.5) {
+            //correction du elo
+            $new_elo_B = $this->joueurB->getElo();
+            $new_elo_B += 32*(self::Win-$result); 
+            $this->joueurB->setElo($new_elo_B);
+
+            $new_elo_A = $this->joueurA->getElo();
+            $new_elo_A += 32*(self::Lose-(1-$result));
+            $this->joueurA->setElo($new_elo_A);//on inverse la proba avec 1-$result
+            
+            return sprintf('Victoire de %s nouveau un elo : %d points, défaite de  %s nouveau elo : %d points', $this->joueurB->getName(), $this->joueurB->getElo(), 
+            $this->joueurA->getName(), $this->joueurA->getElo()).PHP_EOL;
+        } else {
+            //correction du elo
+            $new_elo_A = $this->joueurA->getElo();
+            $new_elo_A += 32*(self::Draw-$result);
+            $this->joueurA->setElo($new_elo_A);
+
+            $new_elo_B = $this->joueurB->getElo();
             $new_elo_B += 32*(self::Draw-$result);
-            $jB->setElo($new_elo_B);
+            $this->joueurB->setElo($new_elo_B);
+            return sprintf('Match nul, %s nouveau elo : %d points et %s nouveau elo %d points', $this->joueurA->getName(), $this->joueurA->getElo(), $this->joueurB->getName(), $this->joueurB->getElo()).PHP_EOL;
         }
-        echo $result.PHP_EOL;
+        return sprintf('ERREUR DANS LE CALCUL DES PROBABILITES');
+    }
+
+    public function __toString(): string {
+        return sprintf('Le match oppose %s avec un elo de %d contre %s avec un elo de %d', $this->joueurA->getName(), $this->joueurA->getElo(), 
+            $this->joueurB->getName(), $this->joueurB->getElo()).PHP_EOL;
     }
 }

@@ -9,11 +9,25 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello TEST ! ✅</h1>
-    <h1>Liste de joueurs</h1>
-    <ul>
+    <h1>TEST MATCH MAKER CONTROLLER !</h1>
+    <h2>Liste de joueurs</h1>
+    <ul style="list-style:none;">
         {% for joueur in joueurs %}
             <li>{{ joueur }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Liste des matchs</h1>
+    <ul style="list-style:none;">
+        {% for match in matchs %}
+            <li>{{ match }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Résultats des matchs</h1>
+    <ul style="list-style:none;">
+        {% for resultat in resultats %}
+            <li>{{ resultat }}</li>
         {% endfor %}
     </ul>
 </div>
