@@ -37,14 +37,14 @@ probabilité du joueur A face au joueur B: 0.0099009900990099
 probabilité du joueur B face au joueur A: 0.99009900990099  
 probabilité du joueur C face au joueur A: 0.053240215202022  
 probabilité du joueur A face au joueur C: 0.94675978479798  
-probabilité du joueur D face au joueur A: 0.57146311740838  
-probabilité du joueur A face au joueur D: 0.42853688259162  
+probabilité du joueur D face au joueur A: 0.64006499980289  
+probabilité du joueur A face au joueur D: 0.35993500019711
 
 Avec 1 pour la certitude de gagner, et 0 la certitude de perdre.  
 Admettons que A gagne face à B contre toute attente. Il faudrait corriger leur niveaux respectifs.
 
 Le nouveau niveau du joueur A est: `1700 + 32 * (1 - 0.0099009900990099)` soit `1731.68288`  
-Le nouveau niveau du joueur B est: `2500 + 32 * (1 - 0.0099009900990099)` soit `2468.31712`  
+Le nouveau niveau du joueur B est: `2500 + 32 * (0 - 0.99009900990099)` soit `2468.31712`  
 
 ## Demande
 

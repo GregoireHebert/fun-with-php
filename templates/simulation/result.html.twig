@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Simulation{% endblock %}
+
+{% block body %}
+
+<h4>{{duel.player1.name}} ({{ratings[0]}}) vs {{duel.player2.name}} ({{ratings[1]}})</h4>
+
+<div>
+    Result : {{duel.result}} <br/>
+    {{duel.player1.name}} {{ duel.player1.elo  | round(1, 'floor') }} <br/>
+    {{duel.player2.name}} {{ duel.player2.elo  | round(1, 'floor') }}
+</div>
+
+<a href="/simulation">Nouvelle Simulation</a>
+
+{% endblock %}

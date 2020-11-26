@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Simulation{% endblock %}
+
+{% block body %}
+
+<h4>Match Simulation</h4>
+<form action="simulation/result">
+    <div>
+        <input type="text" name="player1" placeholder="joueur1" required>
+        <input type="number" name="elo1" placeholder="elo" required>
+    </div>
+    <div>
+        <input type="text" name="player2" placeholder="joueur2" required>
+        <input type="number" name="elo2" placeholder="elo" required>
+    </div>
+
+    <div>
+        <label for="result">Score : </label>
+        <div>
+            <label>
+                <input type="radio" name="result" value="1-0" required>
+                1-0
+              </label>
+            
+              <label>
+                <input type="radio" name="result" value="0-1">
+                0-1
+              </label>
+            
+              <label>
+                <input type="radio" name="result" value="1/2-1/2">
+                1/2-1/2
+              </label>
+        </div>
+    </div>
+
+    <input type="submit" value="Simuler">
+</form>
+
+{% endblock %}
