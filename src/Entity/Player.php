@@ -1,11 +1,32 @@
 <?php
-require "Ranking.php";
 
+namespace App\Entity;
+
+use App\Repository\PlayerRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=PlayerRepository::class)
+ */
 class Player
 {
-    public const DEFAULT_POINTS = 1200;
-    private Ranking $ranking;
-    private string $name;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Ranking::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ranking;
 
     public function __construct(string $name)
     {
@@ -13,22 +34,40 @@ class Player
         $this->name = $name;
     }
 
-    public function getName(): string
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function getPoints(): float
+    public function setName(string $name): self
     {
-        return $this->ranking->getPoints();
+        $this->name = $name;
+
+        return $this;
     }
 
-    public function setPoints(float $points): void
+    public function getRanking(): ?Ranking
     {
+        return $this->ranking;
+    }
+
+    public function setRanking(Ranking $ranking): self
+    {
+        $this->ranking = $ranking;
+
+        return $this;
+    }
+
+    public function setPoints(float $points): void {
         $this->ranking->setPoints($points);
     }
-
-    public function addPoints(float $points): void {
-        $this->ranking->addPoints($points);
+    
+    public function getPoints(): float {
+        return $this->ranking->getPoints();
     }
 }
