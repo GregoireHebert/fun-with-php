@@ -1,5 +1,8 @@
 <?php
-include ('src/Entity/Level.php');
+
+namespace App\Entity;
+
+use App\Entity\Level;
 
 class Player {
     public string $_name;

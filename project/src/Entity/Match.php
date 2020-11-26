@@ -1,8 +1,10 @@
 <?php
 
+namespace App\Entity;
+
 class Match {
-    public $_player1;
-    public $_player2;
+    public Player $_player1;
+    public Player $_player2;
 
     public function __construct($playera, $playerb) {
         $this->_player1 = $playera;
@@ -14,18 +16,12 @@ class Match {
      * Return result of the match for player1
      */
     public function getMatchResult(): float {
-        $random = random_int(1, 3);
-        if($random == 1) {
-            return 1.0;
-        } else if($random == 2) {
-            return 0.5;
-        }
-        return 0.0;
+        $rand_array = array(1.0, 0.5, 0.0);
+        return $rand_array[array_rand($rand_array, 1)];
     }
 
     public function playMatch(): float {
         $result = $this->getMatchResult();
-        echo("Match result for Player A: $result\n");
         $this->changePlayersScore($result);
         return $result;
     }
