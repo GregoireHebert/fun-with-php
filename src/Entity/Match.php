@@ -1,14 +1,49 @@
 <?php
 
-require "Player.php";
+namespace App\Entity;
 
-class Match{
+use App\Entity\Player;
+
+class Match
+{
     private Player $playerA;
     private Player $playerB;
 
     function __construct(Player $player1, Player $player2){
         $this->playerA = $player1;
         $this->playerB = $player2;
+    }
+
+    /**
+     * @return Player
+     */
+    public function getPlayerA(): Player
+    {
+        return $this->playerA;
+    }
+
+    /**
+     * @param Player $player1
+     */
+    public function setPlayerA(Player $player1): void
+    {
+        $this->playerA = $playerA;
+    }
+
+    /**
+     * @return Player
+     */
+    public function getPlayerB(): Player
+    {
+        return $this->playerB;
+    }
+
+    /**
+     * @param Player $playerB
+     */
+    public function setPlayerB(Player $playerB): void
+    {
+        $this->playerB = $playerB;
     }
 
     public function get_proba(){
@@ -25,5 +60,3 @@ class Match{
         }
     }
 }
-
-?> 
