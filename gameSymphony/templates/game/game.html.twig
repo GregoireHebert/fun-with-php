@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game probabilites {% endblock %}
+
+{% block body %}
+
+
+<div>
+    <h1>Players :</h1>
+
+
+
+    <ul>
+        {% for player in players %}
+            <li>Nom :{{ player.getName() }} , Score:{{ player.getScore() }}</li>
+        {% endfor %}
+    </ul>
+
+
+    <h1>Les matchs :</h1>
+
+
+
+    <ul>
+        {% for game in games %}
+            <li> {{ game.probabilityP1vP2() }}</li>
+            <li> {{ game.probabilityP2vP1() }}</li>
+        {% endfor %}
+    </ul>
+
+    {# <h1>Probability of A with B :</h1>
+
+    <ul>
+        {% for player in probAvB %}
+            <li>Nom :{{ player.getName() }} , Score:{{ player.getScore() }}</li>
+        {% endfor %}
+    </ul> #}
+
+</div>
+{% endblock %}
