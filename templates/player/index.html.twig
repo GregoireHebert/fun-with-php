@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Username</th>
+                <th>Ratio</th>
                 <th>Roles</th>
                 <th>Password</th>
                 <th>actions</th>
@@ -20,6 +21,7 @@
             <tr>
                 <td>{{ player.id }}</td>
                 <td>{{ player.username }}</td>
+                <td>{{ player.ratio }}</td>
                 <td>{{ player.roles ? player.roles|json_encode : '' }}</td>
                 <td>{{ player.password }}</td>
                 <td>
