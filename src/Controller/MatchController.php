@@ -70,6 +70,10 @@ class MatchController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($match->getStatus() == Match::STATUS_OVER){
+                $match->updateRatios();
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('match_index');

@@ -44,6 +44,9 @@ class Player implements UserInterface
      */
     private ?float $ratio = null;
 
+    function __construct(){
+    }
+
     private function probabilityAgainst (Player $player)
     {
         return 1/(1+(10 ** (($player->getRatio() - $this->getRatio())/400)));
@@ -51,12 +54,16 @@ class Player implements UserInterface
 
     public function updateRatioAgainst (Player $player, $result): void
     {
-        $this->ratio += 32 * ($result - $this->probabilityAgainst($player));
+        $this->setRatio($this->getRatio() + 32 * ($result - $this->probabilityAgainst($player)));
     }
 
     public function getRatio(): float
     {
         return $this->ratio ?? 1200.0;
+    }
+
+    public function setRatio(float $ratio) {
+        $this->ratio = $ratio;
     }
 
     public function getId(): ?int

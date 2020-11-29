@@ -114,9 +114,9 @@ class Match
     }
 
     /**
-     * @param float $scorePlayerA
+     * @param float|null $scorePlayerA
      */
-    public function setScorePlayerA(float $scorePlayerA): void
+    public function setScorePlayerA(?float $scorePlayerA): void
     {
         $this->scorePlayerA = $scorePlayerA;
     }
@@ -130,9 +130,9 @@ class Match
     }
 
     /**
-     * @param float $scorePlayerB
+     * @param float|null $scorePlayerB
      */
-    public function setScorePlayerB(float $scorePlayerB): void
+    public function setScorePlayerB(?float $scorePlayerB): void
     {
         $this->scorePlayerB = $scorePlayerB;
     }
