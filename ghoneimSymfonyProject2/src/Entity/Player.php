@@ -56,4 +56,9 @@ class Player
         return $this;
     }
 
+    public function __toString(): string {
+        return nl2br("Player [" . $this->getName() . "], with id [". $this->id ."] has [" . $this->getPoints() . "] points.\n");
+    }
+
+
 }
