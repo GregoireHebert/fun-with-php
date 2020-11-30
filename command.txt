@@ -1,0 +1,43 @@
+Pour installer symfony sur un projet existant :
+Si erreur Composer could not find a composer.json file
+> Supprimer fichier composer.lock et vendor
+> symfony composer install
+
+Pour initialiser un projet symfony :
+Installer composer :
+> php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+> php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+> php composer-setup.php
+> php -r "unlink('composer-setup.php');"
+
+Créer Login Form :
+https://symfony.com/doc/current/security/form_login_setup.html
+
+Créer une entité avec méthode CRUD :
+https://symfony.com/blog/new-and-improved-generators-for-makerbundle
+
+Créer une entité user :
+https://symfony.com/blog/new-in-makerbundle-1-8-instant-user-login-form-commands
+
+Installer doctrine après avoir configurer bdd :
+https://symfony.com/doc/current/doctrine.html#migrations-creating-the-database-tables-schema
+(symfony console doctrine:database:create)
+
+Après avoir ajouter une nouvelle entité
+https://symfony.com/doc/current/doctrine.html#migrations-creating-the-database-tables-schema
+(symfony console make:migration)
+
+Initialiser la bdd :
+ php bin/console doctrine:schema:create
+ symfony console d:s:c
+
+Update la bdd :
+ php bin/console doctrine:schema:update
+ symfony console d:d:c
+
+Possibilité créer API :
+https://api-platform.com/docs/core/getting-started/
+symfony composer require api
+
+Chemin pour voir l'api /api/...
+Il faut rajouter la notation @ApiResource(...)
