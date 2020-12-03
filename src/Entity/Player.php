@@ -44,6 +44,11 @@ class Player implements UserInterface
      */
     private ?float $ratio = null;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $inLobby = false;
+
     function __construct(){
     }
 
@@ -137,5 +142,17 @@ class Player implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getInLobby(): ?bool
+    {
+        return $this->inLobby;
+    }
+
+    public function setInLobby(bool $inLobby): self
+    {
+        $this->inLobby = $inLobby;
+
+        return $this;
     }
 }
