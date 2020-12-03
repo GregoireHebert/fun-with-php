@@ -56,6 +56,10 @@ class PlayerAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             Security::LAST_USERNAME,
             $credentials['username']
         );
+        $request->getSession()->set(
+           'username',
+            $credentials['username']
+        );
 
         return $credentials;
     }
