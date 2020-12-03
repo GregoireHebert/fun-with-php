@@ -2,9 +2,29 @@
 
 {% block body %}
 
+<h1>Lobby</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th scope="col">
+                Nom du joueur
+            </th>
+        </tr>
+        {% for player in players %}
+            <tr>
+                <td scope="row">
+                    {{ player }}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
 {% if is_granted('ROLE_USER') %} 
 
-    <a href="/lobby/quit/{{app.user.id}}" class="btn btn-primary">Quitter le loby</a>
+    <a href="/lobby" class="btn btn-primary">Quitter le loby</a>
 
 {% endif %}
 
