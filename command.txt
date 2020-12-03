@@ -13,6 +13,9 @@ Installer composer :
 Créer Login Form :
 https://symfony.com/doc/current/security/form_login_setup.html
 
+Créer un formulaire dépendant d'une entité existante :
+symfony console make:form
+
 Créer une entité avec méthode CRUD :
 https://symfony.com/blog/new-and-improved-generators-for-makerbundle
 
