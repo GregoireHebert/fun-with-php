@@ -12,7 +12,7 @@ class LobbyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('playerId')
+            ->add('player_id')
         ;
     }
 
