@@ -36,6 +36,15 @@ class PlayerRepository extends ServiceEntityRepository implements PasswordUpgrad
         $this->_em->flush();
     }
 
+    public function findOneByUsername($username)
+    {
+        $q = $this->createQueryBuilder('p')
+            ->where('p.username = :username')
+            ->setParameter('username', $username)
+            ->getQuery();
+        return $q->getOneOrNullResult(); // will return only one result or null 'getResult' will return a collection
+    }
+
     // /**
     //  * @return Player[] Returns an array of Player objects
     //  */
