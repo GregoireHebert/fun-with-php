@@ -30,6 +30,7 @@ final class Version20201126112511 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_7A5BC50599C4036B ON "match" (player_a_id)');
         $this->addSql('CREATE INDEX IDX_7A5BC5058B71AC85 ON "match" (player_b_id)');
         $this->addSql('ALTER TABLE player ADD COLUMN ratio DOUBLE PRECISION DEFAULT NULL');
+        $this->addSql('INSERT INTO lobby (id) values(1)' );
     }
 
     public function down(Schema $schema) : void

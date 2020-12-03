@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Player index{% endblock %}
+
+{% block body %}
+    <h1>Players in lobby</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for player in lobby.players %}
+            <tr>
+                <td>{{ player.id }}</td>
+                <td>{{ player.username }}</td>
+                <td>{{ player.roles ? player.roles|json_encode : '' }}</td>
+                <td>{{ player.password }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

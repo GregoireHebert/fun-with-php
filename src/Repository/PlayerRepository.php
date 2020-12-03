@@ -64,4 +64,12 @@ class PlayerRepository extends ServiceEntityRepository implements PasswordUpgrad
         ;
     }
     */
+
+    public function findByUsername(string $username): ?Player {
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.username = :val')
+        ->setParameter('val', $username)
+        ->getQuery()
+        ->getOneOrNullResult();
+    }
 }
