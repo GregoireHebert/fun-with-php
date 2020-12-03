@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Match;
+use App\Entity\Game;
 use App\Form\MatchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ class MatchController extends AbstractController
     public function index(): Response
     {
         $matches = $this->getDoctrine()
-            ->getRepository(Match::class)
+            ->getRepository(Game::class)
             ->findAll();
 
         return $this->render('match/index.html.twig', [
@@ -33,7 +33,7 @@ class MatchController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $match = new Match();
+        $match = new Game();
         $form = $this->createForm(MatchType::class, $match);
         $form->handleRequest($request);
 
@@ -54,7 +54,7 @@ class MatchController extends AbstractController
     /**
      * @Route("/{id}", name="match_show", methods={"GET"})
      */
-    public function show(Match $match): Response
+    public function show(Game $match): Response
     {
         return $this->render('match/show.html.twig', [
             'match' => $match,
@@ -64,7 +64,7 @@ class MatchController extends AbstractController
     /**
      * @Route("/{id}/edit", name="match_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Match $match): Response
+    public function edit(Request $request, Game $match): Response
     {
         $form = $this->createForm(MatchType::class, $match);
         $form->handleRequest($request);
@@ -84,7 +84,7 @@ class MatchController extends AbstractController
     /**
      * @Route("/{id}", name="match_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Match $match): Response
+    public function delete(Request $request, Game $match): Response
     {
         if ($this->isCsrfTokenValid('delete'.$match->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

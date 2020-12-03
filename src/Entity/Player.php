@@ -31,7 +31,7 @@ class Player implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles = ['ROLE_PLAYER'];
 
     /**
      * @var string The hashed password
@@ -43,6 +43,11 @@ class Player implements UserInterface
      * @ORM\Column(type="float", nullable=true)
      */
     private ?float $ratio = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lobby::class, inversedBy="Players")
+     */
+    private $lobby;
 
     private function probabilityAgainst (Player $player)
     {
@@ -130,5 +135,17 @@ class Player implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getLobby(): ?Lobby
+    {
+        return $this->lobby;
+    }
+
+    public function setLobby(?Lobby $lobby): self
+    {
+        $this->lobby = $lobby;
+
+        return $this;
     }
 }
