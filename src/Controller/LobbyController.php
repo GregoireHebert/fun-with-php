@@ -50,4 +50,15 @@ class LobbyController extends AbstractController
 
         return $this->redirectToRoute('lobby');
     }
+
+    /**
+     * @Route("/lobby/home", name="lobby_home", methods={"GET"})
+     */
+    public function home(): Response
+    {
+        $players=['mael','gregoire']; // TODO : Récuperer les joueurs dans la table Lobby et récupérer leur nom dans Player
+        return $this->render('lobby/home.html.twig', [
+            'players' => $players,
+        ]);
+    }
 }
