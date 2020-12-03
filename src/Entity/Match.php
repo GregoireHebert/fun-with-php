@@ -56,12 +56,6 @@ class Match
      */
     private ?string $status = null;
 
-    function __construct(Player $playerA, Player $playerB){
-        $this->playerA = $playerA;
-        $this->playerB = $playerB;
-        $this->status = self::STATUS_PENDING;
-    }
-
     /**
      * @return int
      */

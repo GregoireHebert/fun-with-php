@@ -48,7 +48,11 @@ class CreateMatchesCommand extends Command
             $playerB = $players[$i];
             $playerA->setInlobby(false);
             $playerB->setInlobby(false);
-            $this->em->persist(new Match($playerA, $playerB));
+            $match = new Match();
+            $match->setPlayerA($playerA);
+            $match->setPlayerB($playerB);
+            $match->setStatus(Match::STATUS_PENDING);
+            $this->em->persist($match);
             $io->success('New match between '.$playerA->getUsername().' and '.$playerB->getUsername());
         }
 
