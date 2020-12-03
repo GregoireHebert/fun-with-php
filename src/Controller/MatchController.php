@@ -16,6 +16,7 @@ class MatchController extends AbstractController
 {
     /**
      * @Route("/", name="match_index", methods={"GET"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function index(): Response
     {
