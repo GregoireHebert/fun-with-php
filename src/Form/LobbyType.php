@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Lobby;
+use App\Entity\Player;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class LobbyType extends AbstractType
 {
@@ -13,10 +16,10 @@ class LobbyType extends AbstractType
     {
         $builder
         // TODO : pouvoir saisir plusieurs joueurs ?
-            ->add('playerA', EntityType::class, [
-                'class' => Player::class,
-                'choice_label' => 'username'
-            ])
+            // ->add('players', EntityType::class, [
+            //     'class' => Player::class,
+            //     'choice_label' => 'username'
+            // ])
         ;
     }
 

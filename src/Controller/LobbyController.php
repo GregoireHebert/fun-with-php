@@ -91,4 +91,19 @@ class LobbyController extends AbstractController
 
         return $this->redirectToRoute('lobby_index');
     }
+
+    /**
+     * @Route("/addPlayerToLobby/{id}", name="lobby_delete", methods={"GET","POST"})
+     */
+    public function join(Lobby $lobby): Response
+    {
+        $user = $this->getUser();
+        $lobby->addPlayer($user);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($lobby);
+        $entityManager->flush();
+        return $this->render('lobby/show.html.twig', [
+            'lobby' => $lobby,
+        ]);
+    }
 }
