@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MatchMakerController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+    <p> Probabilité du joueur A face au joueur B :  {{ game1.probaPlayer1() }} </p>
+
+    <p> Probabilité du joueur B face au joueur A : {{ game1.probaPlayer2() }} </p>
+
+    <p> Probabilité du joueur C face au joueur A : {{ game2.probaPlayer1() }} </p>
+
+    <p> Probabilité du joueur A face au joueur C : {{ game2.probaPlayer2() }} </p>
+
+    <p> Probabilité du joueur D face au joueur A : {{ game3.probaPlayer1() }} </p>
+
+    <p> Probabilité du joueur A face au joueur D : {{ game3.probaPlayer2() }} </p>
+
+    <p> LE JOUEUR A GAGNE CONTRE LE JOUEUR B  </p>
+
+    {{ game1.correctLevel(game1.getPlayer1())  }}
+
+
+    <p> Le nouveau niveau du joueur A est {{ game1.getPlayer1().getLevel() }}</p>
+    <p> Le nouveau niveau du joueur B est {{ game1.getPlayer2().getLevel() }}</p>
+</div>
+{% endblock %}
