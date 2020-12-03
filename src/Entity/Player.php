@@ -90,6 +90,10 @@ class Player implements UserInterface
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
+        if($this->username == 'admin'){
+            array_push($roles,'ROLE_ADMIN');
+        }
+
         return array_unique($roles);
     }
 
