@@ -1,47 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="bbed8731-fd1d-4a29-abd9-3e15454e6596" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ghoneimProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ghoneimProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ghoneimSymfonyProject2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ghoneimSymfonyProject2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PlayerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Player.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/player/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/player/index.html.twig" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
@@ -146,65 +105,5 @@
       <path value="$PROJECT_DIR$/vendor/twig/extra-bundle" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1kyRadL42gnImFqm3cMnU2s5dyj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/player" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/player" />
-    </key>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="bbed8731-fd1d-4a29-abd9-3e15454e6596" name="Default Changelist" comment="" />
-      <created>1606670909826</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1606670909826</updated>
-      <workItem from="1606670910927" duration="5934000" />
-      <workItem from="1606857887583" duration="5608000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="537" y="264" width="583" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606673891945">
-      <screen x="67" y="27" width="1533" height="873" />
-    </state>
-    <state x="537" y="264" width="583" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1533.873/1600.0.1360.768@67.27.1533.873" timestamp="1606673891945" />
-    <state x="608" y="172" width="412" height="638" key="#com.intellij.ide.util.MemberChooser" timestamp="1606863239462">
-      <screen x="67" y="27" width="1533" height="873" />
-    </state>
-    <state x="608" y="172" width="412" height="638" key="#com.intellij.ide.util.MemberChooser/67.27.1533.873/1600.0.1360.768@67.27.1533.873" timestamp="1606863239462" />
-    <state x="416" y="182" width="825" height="561" key="NewPhpClassDialog" timestamp="1606859723215">
-      <screen x="67" y="27" width="1533" height="873" />
-    </state>
-    <state x="416" y="182" width="825" height="561" key="NewPhpClassDialog/67.27.1533.873/1600.0.1360.768@67.27.1533.873" timestamp="1606859723215" />
-  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
 </project>
