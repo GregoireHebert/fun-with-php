@@ -44,6 +44,11 @@ class Player implements UserInterface
      */
     private ?float $ratio = null;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lobby::class, inversedBy="players")
+     */
+    private $targetLobby;
+
     private function probabilityAgainst (Player $player)
     {
         return 1/(1+(10 ** (($player->getRatio() - $this->getRatio())/400)));
@@ -130,5 +135,17 @@ class Player implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getTargetLobby(): ?Lobby
+    {
+        return $this->targetLobby;
+    }
+
+    public function setTargetLobby(?Lobby $targetLobby): self
+    {
+        $this->targetLobby = $targetLobby;
+
+        return $this;
     }
 }
