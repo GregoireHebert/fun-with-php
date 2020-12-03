@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -13,9 +14,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *     itemOperations={"get"},
  *     collectionOperations={"get"}
  * )
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class Player implements UserInterface
 {
+
+    public const RATIO_DEBUTANT = 'joueur debutant';
+    public const RATIO_CONFIRME = 'joueur confirmé';
+    public const RATIO_EXPERT = 'joueur expert';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -43,6 +49,11 @@ class Player implements UserInterface
      * @ORM\Column(type="float", nullable=true)
      */
     private ?float $ratio = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lobby::class, inversedBy="players")
+     */
+    private $lobby;
 
     private function probabilityAgainst (Player $player)
     {
@@ -130,5 +141,17 @@ class Player implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getLobby(): ?Lobby
+    {
+        return $this->lobby;
+    }
+
+    public function setLobby(?Lobby $lobby): self
+    {
+        $this->lobby = $lobby;
+
+        return $this;
     }
 }

@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     security="is_granted('ROLE_USER')",
  *     collectionOperations={
- *      "get" = {"normalization_context"={"groups"={"Match:Collection:Read"}}},
+ *      "get" = {"normalization_context"={"groups"={"Game:Collection:Read"}}},
  *      "post"
  *     },
  *     itemOperations={
@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  */
-class Match
+class Game
 {
     public const STATUS_PENDING = 'pending';
     public const STATUS_PLAYING = 'playing';
@@ -53,9 +53,14 @@ class Match
     private ?float $scorePlayerB = null;
     /**
      * @ORM\Column(type="string")
-     * @Groups("Match:Collection:Read")
+     * @Groups("Game:Collection:Read")
      */
     private ?string $status = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lobby::class, inversedBy="games")
+     */
+    private $lobby;
 
     /**
      * @return int
@@ -177,5 +182,17 @@ class Match
 
         $this->playerA->updateRatioAgainst($this->playerB, $resultPlayerA);
         $this->playerB->updateRatioAgainst($this->playerA, $resultPlayerB);
+    }
+
+    public function getLobby(): ?Lobby
+    {
+        return $this->lobby;
+    }
+
+    public function setLobby(?Lobby $lobby): self
+    {
+        $this->lobby = $lobby;
+
+        return $this;
     }
 }
