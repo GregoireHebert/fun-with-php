@@ -2,52 +2,96 @@
 
 namespace App\Controller;
 
-use App\Repository\PlayerRepository;
 use App\Entity\Match;
+use App\Form\MatchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class MatchController
- * @package App\Controller
- * @Route ("/match")
+ * @Route("/match")
  */
 class MatchController extends AbstractController
 {
+    /**
+     * @Route("/", name="match_index", methods={"GET"})
+     */
+    public function index(): Response
+    {
+        $matches = $this->getDoctrine()
+            ->getRepository(Match::class)
+            ->findAll();
 
-	private PlayerRepository $repo;
-
-    public function __construct() {
-        $this->repo = new PlayerRepository();
+        return $this->render('match/index.html.twig', [
+            'matches' => $matches,
+        ]);
     }
 
-	    /**
-     * @return Response
-     * @Route ("/{id1}/{id2}")
+    /**
+     * @Route("/new", name="match_new", methods={"GET","POST"})
      */
-    public function playMatch(Request $request, int $id1, int $id2): Response {
+    public function new(Request $request): Response
+    {
+        $match = new Match();
+        $form = $this->createForm(MatchType::class, $match);
+        $form->handleRequest($request);
 
-        $playerA = $this->repo->findPlayerById($id1);
-        $playerB = $this->repo->findPlayerById($id2);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($match);
+            $entityManager->flush();
 
-        $res = "Les joueurs : <br>";
-        $res .= "Rang du joueur " . $playerA->getUsername() . " : " . $playerA->getRank() . "<br>";
-        $res .= "Rang du joueur " . $playerB->getUsername() . " : " . $playerB->getRank() . "<br><br>";
+            return $this->redirectToRoute('match_index');
+        }
 
-        $matchAB = new Match($playerA,$playerB);
-        $probaAB = $matchAB->get_proba();
-        $probaBA = 1 - $matchAB->get_proba();
-        $res .= "Probabilité joueur A face au joueur B : " . $probaAB . "<br>";
-        $res .= "Probabilité joueur B face au joueur A : " . $probaBA . "<br><br>";
+        return $this->render('match/new.html.twig', [
+            'match' => $match,
+            'form' => $form->createView(),
+        ]);
+    }
 
-        $res .= "Rang après le match A contre B : <br>";
-        $matchAB->endMatch(1);
-        $res .= "Rang du joueur A : " . $playerA->getRank() . "<br>";
-        $res .= "Rang du joueur B : " . $playerB->getRank() . "<br>";
+    /**
+     * @Route("/{id}", name="match_show", methods={"GET"})
+     */
+    public function show(Match $match): Response
+    {
+        return $this->render('match/show.html.twig', [
+            'match' => $match,
+        ]);
+    }
 
-        return new Response($res);
+    /**
+     * @Route("/{id}/edit", name="match_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Match $match): Response
+    {
+        $form = $this->createForm(MatchType::class, $match);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('match_index');
+        }
+
+        return $this->render('match/edit.html.twig', [
+            'match' => $match,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="match_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Match $match): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$match->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($match);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('match_index');
     }
 }
-
