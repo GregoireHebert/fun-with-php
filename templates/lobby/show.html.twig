@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lobby{% endblock %}
+
+{% block body %}
+    <h1>Lobby</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lobby.id }}</td>
+            </tr>
+            <tr>
+                <th>Player</th>
+                {% for p in lobby.player %}
+                    <td>{{ p.username }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('lobby_index') }}">back to list</a>
+
+    <a href="{{ path('lobby_edit', {'id': lobby.id}) }}">edit</a>
+
+    {{ include('lobby/_delete_form.html.twig') }}
+{% endblock %}
