@@ -61,4 +61,14 @@ class LobbyController extends AbstractController
             'players' => $players,
         ]);
     }
+
+    
+
+    /**
+     * @Route("/lobby/games/create", name="lobby_games", methods={"GET"})
+     */
+    public function games_create():Response
+    {
+        //TODO
+    }
 }
