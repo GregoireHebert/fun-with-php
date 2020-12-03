@@ -7,7 +7,7 @@ use App\Repository\LobbyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(security="is_granted('ROLE_USER','ROLE_ADMIN')")
  * @ORM\Entity(repositoryClass=LobbyRepository::class)
  */
 class Lobby
