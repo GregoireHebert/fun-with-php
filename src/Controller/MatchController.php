@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/match")
@@ -30,6 +31,8 @@ class MatchController extends AbstractController
 
     /**
      * @Route("/new", name="match_new", methods={"GET","POST"})
+     * 
+     * @IsGranted("ROLE_ADMIN", message="No access! Get out!")
      */
     public function new(Request $request): Response
     {
@@ -63,6 +66,8 @@ class MatchController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="match_edit", methods={"GET","POST"})
+     * 
+     * @IsGranted("ROLE_ADMIN", message="No access! Get out!")
      */
     public function edit(Request $request, Match $match): Response
     {
@@ -70,6 +75,10 @@ class MatchController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($match->getStatus() == Match::STATUS_OVER){
+                $match->updateRatios();
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('match_index');
@@ -83,6 +92,8 @@ class MatchController extends AbstractController
 
     /**
      * @Route("/{id}", name="match_delete", methods={"DELETE"})
+     * 
+     * @IsGranted("ROLE_ADMIN", message="No access! Get out!")
      */
     public function delete(Request $request, Match $match): Response
     {

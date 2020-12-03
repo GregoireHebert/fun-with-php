@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vous avez rejoins le lobby !{% endblock %}
+
+{% block body %}
+ Il y a {{players | length}} joueurs dans la file d'attente. Veuillez patientez
+
+ <a href="{{ path('lobby_leave') }}">Quitter le lobby</a>
+{% endblock %}

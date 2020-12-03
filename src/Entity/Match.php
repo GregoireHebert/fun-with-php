@@ -11,15 +11,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity()
  * @ApiResource(
- *     security="is_granted('ROLE_USER')",
+ *     attributes={"security"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *      "get" = {"normalization_context"={"groups"={"Match:Collection:Read"}}},
- *      "post"
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_ADMIN')"}
  *     },
  *     itemOperations={
- *          "get",
- *          "put" = {"security"="is_granted('ROLE_ADMIN')"},
- *          "delete" = {"security"="is_granted('ROLE_ADMIN')"},
+ *         "get",
+ *         "put"={"security"="is_granted('ROLE_ADMIN') or object.owner == user"},
  *     }
  * )
  */
@@ -114,9 +113,9 @@ class Match
     }
 
     /**
-     * @param float $scorePlayerA
+     * @param float|null $scorePlayerA
      */
-    public function setScorePlayerA(float $scorePlayerA): void
+    public function setScorePlayerA(?float $scorePlayerA): void
     {
         $this->scorePlayerA = $scorePlayerA;
     }
@@ -130,9 +129,9 @@ class Match
     }
 
     /**
-     * @param float $scorePlayerB
+     * @param float|null $scorePlayerB
      */
-    public function setScorePlayerB(float $scorePlayerB): void
+    public function setScorePlayerB(?float $scorePlayerB): void
     {
         $this->scorePlayerB = $scorePlayerB;
     }
