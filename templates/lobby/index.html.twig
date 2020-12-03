@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lobby index{% endblock %}
+
+{% block body %}
+    <h1>Lobby index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Current number of players</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lobby in lobbies %}
+            <tr>
+                <td>{{ lobby.id }}</td>
+                <td>{{ lobby.players | length }}</td>
+                <td>
+                    <a href="{{ path('lobby_page', {'id': lobby.id}) }}">Join</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('lobby_new') }}">Create new</a>
+{% endblock %}
