@@ -16,15 +16,15 @@
             </tr>
         </thead>
         <tbody>
-        {% for match in matches %}
+        {% for game in games %}
             <tr>
-                <td>{{ match.id }}</td>
-                <td>{{ match.scorePlayerA }}</td>
-                <td>{{ match.scorePlayerB }}</td>
-                <td>{{ match.status }}</td>
+                <td>{{ game.id }}</td>
+                <td>{{ game.scorePlayerA }}</td>
+                <td>{{ game.scorePlayerB }}</td>
+                <td>{{ game.status }}</td>
                 <td>
-                    <a href="{{ path('match_show', {'id': match.id}) }}">show</a>
-                    <a href="{{ path('match_edit', {'id': match.id}) }}">edit</a>
+                    <a href="{{ path('game_show', {'id': game.id}) }}">show</a>
+                    <a href="{{ path('game_edit', {'id': game.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('match_new') }}">Create new</a>
+    <a href="{{ path('game_new') }}">Create new</a>
 {% endblock %}

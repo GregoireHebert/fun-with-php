@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lobby{% endblock %}
+
+{% block body %}
+    <h1>Lobby</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lobby.id }}</td>
+            </tr>
+            <tr>
+                <th>Number of players</th>
+                <td>{{ lobby.players | length }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('lobby_match', {'id': lobby.id})}}">Create match</a>
+    {% if app.query.request.get("errorMessage") is defined %}
+        <p>{{app.query.request.get("errorMessage")}}</p>
+    {% endif %}
+
+    <a href="{{ path('lobby_leave', {'id': lobby.id}) }}">Leave</a>
+{% endblock %}

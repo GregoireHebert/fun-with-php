@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Match;
+use App\Entity\Game;
 use App\Entity\Player;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -19,9 +19,9 @@ class MatchType extends AbstractType
             ->add('scorePlayerB', null, ['required' => false])
             ->add('status',ChoiceType::class, [
                 'choices'  => [
-                    'En attente' => Match::STATUS_PENDING,
-                    'En cours' => Match::STATUS_PLAYING,
-                    'Terminé' => Match::STATUS_OVER,
+                    'En attente' => Game::STATUS_PENDING,
+                    'En cours' => Game::STATUS_PLAYING,
+                    'Terminé' => Game::STATUS_OVER,
                 ],
             ])
             ->add('playerA', EntityType::class, [
@@ -38,7 +38,7 @@ class MatchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Match::class,
+            'data_class' => Game::class,
         ]);
     }
 }
