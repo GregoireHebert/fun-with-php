@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/match")
@@ -31,8 +32,11 @@ class MatchController extends AbstractController
     /**
      * @Route("/new", name="match_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Security $security): Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')) {
+            $this->redirectToRoute('home');
+        }
         $match = new Match();
         $form = $this->createForm(MatchType::class, $match);
         $form->handleRequest($request);
