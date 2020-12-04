@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue {% endblock %}
+
+{% block content_body %}
+        <div class="row mt-5">
+            <div class="col-md-10">
+                 {% if app.session.get('user') != null %}
+                    <h1> Bonjour {{ app.session.get('user')}} </h1>
+                 {% else %}
+                     <h1> Bienvenue sur notre site</h1>
+                 {% endif %}
+            </div>
+            <div class="col-md-2">
+                {% if app.session.get('user') != null %}
+                    <a class="btn btn-danger" href="{{ path('app_logout') }}"> Se déconnecter </a>
+
+                    <a class="btn btn-success" href="{{ path('lobby_add') }}"> Voir mon lobby </a>
+
+                {% else %}
+                    <a class="btn btn-success" href="{{ path('app_login') }}"> Se connecter </a>
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock %}

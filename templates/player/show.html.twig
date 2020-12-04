@@ -2,7 +2,7 @@
 
 {% block title %}Player{% endblock %}
 
-{% block body %}
+{% block content_body %}
     <h1>Player</h1>
 
     <table class="table">
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('player_index') }}">back to list</a>
+    <a href="{{ path('player_index') }}" class="btn btn-info">back to list</a>
 
-    <a href="{{ path('player_edit', {'id': player.id}) }}">edit</a>
+    <a href="{{ path('player_edit', {'id': player.id}) }}" class="btn btn-success">edit</a>
 
     {{ include('player/_delete_form.html.twig') }}
 {% endblock %}

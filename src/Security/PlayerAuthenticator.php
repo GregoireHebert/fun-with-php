@@ -19,6 +19,8 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PlayerAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
@@ -30,13 +32,17 @@ class PlayerAuthenticator extends AbstractFormLoginAuthenticator implements Pass
     private $urlGenerator;
     private $csrfTokenManager;
     private $passwordEncoder;
+    private $router;
+    private $session;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(SessionInterface $session,RouterInterface $router,EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->router = $router;
+        $this->session = $session;
     }
 
     public function supports(Request $request)
@@ -97,7 +103,9 @@ class PlayerAuthenticator extends AbstractFormLoginAuthenticator implements Pass
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        $this->session->set('user', $token->getUser());
+        return new RedirectResponse($this->router->generate('home_page'));
+
     }
 
     protected function getLoginUrl()

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lobby index{% endblock %}
+
+{% block content_body %}
+
+   <h1> Liste des joueurs </h1>
+   <ul>
+      {% for player in lobby.getAllPlayers() %}
+         <li> {{ player.username }}</li>
+      {% endfor %}
+   </ul>
+    <a class="btn btn-danger" href="{{ path('lobby_remove') }}"> Quitte ce lobby </a>
+
+{% endblock %}

@@ -2,10 +2,10 @@
 
 {% block title %}New Player{% endblock %}
 
-{% block body %}
+{% block content_body %}
     <h1>Create new Player</h1>
 
     {{ include('player/_form.html.twig') }}
 
-    <a href="{{ path('player_index') }}">back to list</a>
+    <a href="{{ path('player_index') }}" class="btn btn-info">back to list</a>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block title %}Match index{% endblock %}
 
-{% block body %}
+{% block content_body %}
     <h1>Match index</h1>
 
     <table class="table">
@@ -23,8 +23,8 @@
                 <td>{{ match.scorePlayerB }}</td>
                 <td>{{ match.status }}</td>
                 <td>
-                    <a href="{{ path('match_show', {'id': match.id}) }}">show</a>
-                    <a href="{{ path('match_edit', {'id': match.id}) }}">edit</a>
+                    <a href="{{ path('match_show', {'id': match.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('match_edit', {'id': match.id}) }}" class="btn btn-info">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('match_new') }}">Create new</a>
+    <a href="{{ path('match_new') }}" class="btn btn-success">Create new</a>
 {% endblock %}
