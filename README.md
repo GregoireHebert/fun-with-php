@@ -1,6 +1,17 @@
 Fun with PHP	
 ========
 
+## Auteur
+
+[Mael Avennec](https://github.com/mvkopp "Mael Avennec")
+
+## Usage
+
+Run this command in shell
+```
+$ php index.php
+```
+
 ## Contexte
 
 Vous venez d'être contacté par Blizzard.  
@@ -44,7 +55,7 @@ Avec 1 pour la certitude de gagner, et 0 la certitude de perdre.
 Admettons que A gagne face à B contre toute attente. Il faudrait corriger leur niveaux respectifs.
 
 Le nouveau niveau du joueur A est: `1700 + 32 * (1 - 0.0099009900990099)` soit `1731.68288`  
-Le nouveau niveau du joueur B est: `2500 + 32 * (1 - 0.0099009900990099)` soit `2468.31712`  
+Le nouveau niveau du joueur B est: `2500 + 32 * (0 - 0.99009900990099)` soit `2468.31712`  
 
 ## Demande
 
